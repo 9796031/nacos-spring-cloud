@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 182.92.131.138:8848
+        namespace: 120c4a68-273f-472d-8ef5-399c7c275bc8
+        cluster-name: DEFAULT
+      config:
+        server-addr: 182.92.131.138:8848 # 配置中心
+        file-extension: yaml
+        namespace: 120c4a68-273f-472d-8ef5-399c7c275bc8 # 开发环境
+        group: ORDER_SERVER # XX业务组
