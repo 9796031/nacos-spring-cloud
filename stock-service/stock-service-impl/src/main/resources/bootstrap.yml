@@ -1,13 +1,10 @@
 server:
-  port: 8081
-  servlet:
-    context-path: /order_server
-
+  port: 8083
 spring:
   application:
-    name: order_server
+    name: stock_service_impl
   main:
-    allow-bean-definition-overriding: true # spring boot 2.1 需要设置
+    allow-bean-definition-overriding: true
   cloud:
     nacos:
       discovery:
@@ -20,5 +17,14 @@ spring:
         namespace: 120c4a68-273f-472d-8ef5-399c7c275bc8 # 开发环境
         group: ORDER_SERVER # XX业务组
 dubbo:
+  scan:
+    base-packages: com.home.stock.service.api.impl # 扫秒基准包
+  protocol:
+    name: dubbo # dubbo协议
+    port: ${dubbo_port:20882} # dubbo协议端口 如果不指定端口就使用20881端口
+  registry:
+    address: nacos://182.92.131.138:8848 # 注册地址
+  application:
+    qos-enable: false # dubbo运维服务是否开启
   consumer:
     check: false # 启动服务时就不检查依赖的服务

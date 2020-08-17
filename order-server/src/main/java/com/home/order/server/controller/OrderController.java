@@ -1,6 +1,7 @@
 package com.home.order.server.controller;
 
 import com.home.order.service.api.OrderService;
+import com.home.stock.service.api.StockService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +18,25 @@ public class OrderController {
     @org.apache.dubbo.config.annotation.Reference
     private OrderService orderService;
 
+    @org.apache.dubbo.config.annotation.Reference
+    private StockService stockService;
+
+    @GetMapping("/stock")
+    public String stock() {
+        return "order server invoke success !!! and " + stockService.service();
+    }
+
+    /***
+     * order-service-impl -> stock-service-impl
+     */
+    @GetMapping("/order/stock")
+    public String orderStock() {
+        return "order server invoke success !!! and " + orderService.stock();
+    }
+
+    /**
+     * order-service-impl
+     */
     @GetMapping("/order/service")
     public String orderService() {
         return "order server invoke " + orderService.service();

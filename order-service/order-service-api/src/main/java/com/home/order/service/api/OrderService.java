@@ -10,4 +10,10 @@ public interface OrderService {
      * @return 无
      */
     String service();
+
+    /**
+     * 调用stock服务
+     * @return 无
+     */
+    String stock();
 }
